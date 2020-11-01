@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
 
 class UserController extends Controller
 {
@@ -14,15 +15,32 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        if ($request) {
-            $query = trim($request->get('search'));
-            $users = User::where('name', 'LIKE', '%' . $query . '%')
-                ->orderBy('id', 'asc')
-                ->paginate(10);
-            return view('usuarios.index', compact('users', 'query'));
-        }
+        return view('usuarios.index');
+    }
+
+    public function showData()
+    {
+        $users = User::all();
+        return DataTables::of($users)
+            ->editColumn('created_at', function ($user) {
+                setLocale(LC_ALL, 'spanish_ecuador.utf-8');
+                $myDate = $user->created_at;
+                $myDate = str_replace("/", "-", $myDate);
+                $newDate = date('d-m-Y H:i:s', strtotime($myDate));
+                $monthYear = strftime('%A, %d de %B de %T %p', strtotime($newDate));
+                return $monthYear;
+            })
+            ->editColumn('updated_at', function ($user) {
+                setLocale(LC_ALL, 'spanish_ecuador.utf-8');
+                $myDate = $user->updated_at;
+                $myDate = str_replace("/", "-", $myDate);
+                $newDate = date('d-m-Y H:i:s', strtotime($myDate));
+                $monthYear = strftime('%A, %d de %B de %T %p', strtotime($newDate));
+                return $monthYear;
+            })
+            ->make(true);
     }
 
     /**
