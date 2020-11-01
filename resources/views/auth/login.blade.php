@@ -91,7 +91,7 @@
                     </p>
                     <p class="mb-0">
                         <a class="btn btn-link" href="{{ route('register') }}">
-                            {{ __('Registrar un nueva usuario') }}
+                            {{ __('Registrar un nuevo usuario') }}
                         </a>
                     </p>
 
