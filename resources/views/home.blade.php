@@ -1,13 +1,7 @@
 @extends('layouts.app')
 
 @section('navbar')
-<nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
-        </li>
-    </ul>
+@include('partials.nav')
 </nav>
 @endsection
 
@@ -60,6 +54,30 @@
                             </div>
                         </div>
                     </form>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#eliminar">Eliminar Cuenta</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="eliminar" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-center">
+                    <h5 class="modal-title" id="exampleModalLabel">Eliminar cuenta</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ¿Esta seguro que desea eliminar su cuenta?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    {!! Form::open(['action'=>['UserController@destroy',auth()->user()->id],'method'=>'delete']) !!}
+                        {!! Form::token() !!}
+                        {!! Form::submit('Confirmar', ['class'=>'btn btn-danger']) !!}
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>

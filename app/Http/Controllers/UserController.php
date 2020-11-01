@@ -7,15 +7,22 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
-        return view('usuarios.index',compact('users'));
+        if ($request) {
+            $query = trim($request->get('search'));
+            $users = User::where('name', 'LIKE', '%' . $query . '%')
+                ->orderBy('id', 'asc')
+                ->paginate(10);
+            return view('usuarios.index', compact('users', 'query'));
+        }
     }
 
     /**
@@ -26,9 +33,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-     
-        return view('editar',['user'=>User::findOrFail($id)]);
 
+        return view('editar', ['user' => User::findOrFail($id)]);
     }
 
     /**
@@ -40,10 +46,10 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $usuario=User::findOrFail($id);
+        $usuario = User::findOrFail($id);
 
-        $usuario->name=$request->get('name');
-        $usuario->email=$request->get('email');
+        $usuario->name = $request->get('name');
+        $usuario->email = $request->get('email');
         $usuario->update();
         return redirect('/');
     }
@@ -56,6 +62,10 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $usuario = User::findOrFail($id);
+
+        $usuario->delete();
+
+        return redirect('/login');
     }
 }

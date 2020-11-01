@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Medico;
-use App\TipoDocumento;
+use App\Habitacion;
 use Illuminate\Http\Request;
 
-class MedicoController extends Controller
+class HabitacionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,13 +14,12 @@ class MedicoController extends Controller
      */
     public function index(Request $request)
     {
-
         if ($request) {
             $query = trim($request->get('search'));
-            $medics = Medico::where('nombre', 'LIKE', '%' . $query . '%')
+            $habitaciones = Habitacion::where('numero', 'LIKE', '%' . $query . '%')
                 ->orderBY('id', 'asc')
                 ->paginate(10);     
-            return view('medicos.index', compact('medics', 'query'));
+            return view('habitaciones.index', compact('habitaciones', 'query'));
         }
     }
 
@@ -32,7 +30,7 @@ class MedicoController extends Controller
      */
     public function create()
     {
-        return view('medicos.create');
+        return view('habitaciones.create');
     }
 
     /**
@@ -43,16 +41,15 @@ class MedicoController extends Controller
      */
     public function store(Request $request)
     {
-        $medico = new Medico();
-        $medico->documento_id = intval(request('documento_id'));
-        $medico->apellido = request('apellido');
-        $medico->nombre = request('nombre');
-        $medico->num_documento = request('num_documento');
-        $medico->especialidad = request('especialidad');
-        $medico->num_celular = request('num_celular');
+        $habitacion = new Habitacion();
+        $habitacion->piso_id=intval(request('piso_id'));
+        $habitacion->estado_id=intval(request('estado_id'));
+        $habitacion->tipo_id=intval(request('tipo_id'));
+        $habitacion->genero_id=intval(request('genero_id'));
+        $habitacion->numero=request('numero');
 
-        $medico->save();
-        return redirect('/medicos');
+        $habitacion->save();
+        return redirect('/habitaciones');
     }
 
     /**
@@ -74,8 +71,7 @@ class MedicoController extends Controller
      */
     public function edit($id)
     {
-        $medico = Medico::findOrFail($id);
-        return view('medicos.edit', compact('medico'));
+        //
     }
 
     /**
@@ -87,15 +83,7 @@ class MedicoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $medico = Medico::findOrFail($id);
-        $medico->documento_id = $request->get('documento_id');
-        $medico->apellido = $request->get('apellido');
-        $medico->nombre = $request->get('nombre');
-        $medico->num_documento = $request->get('num_documento');
-        $medico->especialidad = $request->get('especialidad');
-        $medico->num_celular = $request->get('num_celular');
-        $medico->update();
-        return redirect('/medicos');
+        //
     }
 
     /**
@@ -106,10 +94,6 @@ class MedicoController extends Controller
      */
     public function destroy($id)
     {
-        $medico = Medico::findOrFail($id);
-
-        $medico->delete();
-
-        return redirect('/medicos');
+        //
     }
 }

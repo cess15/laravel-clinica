@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMedicoTable extends Migration
+class CreateMedicosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateMedicoTable extends Migration
      */
     public function up()
     {
-        Schema::create('medico', function (Blueprint $table) {
+        Schema::create('medicos', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedBigInteger('documento_id')->nullable();
+            $table->unsignedInteger('documento_id')->nullable();
             $table->string('apellido');
             $table->string('nombre');
             $table->string('num_documento', 10)->unique();
@@ -28,7 +28,6 @@ class CreateMedicoTable extends Migration
                 ->on('tipo_documento')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-    // ...
         });
     }
 
@@ -39,6 +38,6 @@ class CreateMedicoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('medico');
+        Schema::dropIfExists('medicos');
     }
 }

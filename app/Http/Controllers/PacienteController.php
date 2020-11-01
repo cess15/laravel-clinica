@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Medico;
-use App\TipoDocumento;
+use App\Paciente;
 use Illuminate\Http\Request;
 
-class MedicoController extends Controller
+class PacienteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,13 +14,12 @@ class MedicoController extends Controller
      */
     public function index(Request $request)
     {
-
         if ($request) {
             $query = trim($request->get('search'));
-            $medics = Medico::where('nombre', 'LIKE', '%' . $query . '%')
+            $patients = Paciente::where('nombre', 'LIKE', '%' . $query . '%')
                 ->orderBY('id', 'asc')
-                ->paginate(10);     
-            return view('medicos.index', compact('medics', 'query'));
+                ->paginate(10);
+            return view('pacientes.index', compact('patients', 'query'));
         }
     }
 
@@ -32,7 +30,7 @@ class MedicoController extends Controller
      */
     public function create()
     {
-        return view('medicos.create');
+        return view('pacientes.create');
     }
 
     /**
@@ -43,16 +41,15 @@ class MedicoController extends Controller
      */
     public function store(Request $request)
     {
-        $medico = new Medico();
-        $medico->documento_id = intval(request('documento_id'));
-        $medico->apellido = request('apellido');
-        $medico->nombre = request('nombre');
-        $medico->num_documento = request('num_documento');
-        $medico->especialidad = request('especialidad');
-        $medico->num_celular = request('num_celular');
+        $paciente = new Paciente();
+        $paciente->documento_id = intval(request('documento_id'));
+        $paciente->apellido = request('apellido');
+        $paciente->nombre = request('nombre');
+        $paciente->num_documento = request('num_documento');
+        $paciente->domicilio = request('domicilio');
 
-        $medico->save();
-        return redirect('/medicos');
+        $paciente->save();
+        return redirect('/pacientes');
     }
 
     /**
@@ -74,8 +71,8 @@ class MedicoController extends Controller
      */
     public function edit($id)
     {
-        $medico = Medico::findOrFail($id);
-        return view('medicos.edit', compact('medico'));
+        $paciente = Paciente::findOrFail($id);
+        return view('pacientes.edit', compact('paciente'));
     }
 
     /**
@@ -87,15 +84,15 @@ class MedicoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $medico = Medico::findOrFail($id);
-        $medico->documento_id = $request->get('documento_id');
-        $medico->apellido = $request->get('apellido');
-        $medico->nombre = $request->get('nombre');
-        $medico->num_documento = $request->get('num_documento');
-        $medico->especialidad = $request->get('especialidad');
-        $medico->num_celular = $request->get('num_celular');
-        $medico->update();
-        return redirect('/medicos');
+        $paciente = Paciente::findOrFail($id);
+        $paciente->documento_id = $request->get('documento_id');
+        $paciente->apellido = $request->get('apellido');
+        $paciente->nombre = $request->get('nombre');
+        $paciente->num_documento = $request->get('num_documento');
+        $paciente->domicilio = $request->get('domicilio');
+
+        $paciente->update();
+        return redirect('/pacientes');
     }
 
     /**
@@ -106,10 +103,10 @@ class MedicoController extends Controller
      */
     public function destroy($id)
     {
-        $medico = Medico::findOrFail($id);
+        $paciente = Paciente::findOrFail($id);
 
-        $medico->delete();
+        $paciente->delete();
 
-        return redirect('/medicos');
+        return redirect('/pacientes');
     }
 }

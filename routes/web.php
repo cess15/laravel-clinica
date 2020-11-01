@@ -17,12 +17,10 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::resource('usuarios', 'UserController');
+Route::resource('usuarios', 'UserController')->middleware('auth');
 
-Route::resource('medicos', 'MedicoController');
+Route::resource('medicos', 'MedicoController')->middleware('auth');
 
-Route::get('/test/{id}', function ($id) {
-    
-    dd($id);
-    
-});
+Route::resource('pacientes', 'PacienteController')->middleware('auth');
+
+Route::resource('habitaciones', 'HabitacionController')->middleware('auth');

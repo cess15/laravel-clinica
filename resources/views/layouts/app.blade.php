@@ -10,10 +10,7 @@
 
   <title>Clinica | Cuida la vida</title>
 
-  <!-- Scripts -->
-  <script src="{{ asset('js/app.js') }}" defer></script>
-  <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js')}}"></script>
-  <script src="{{ asset('dist/js/adminlte.js')}}"></script>
+
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{ url('plugins/fontawesome-free/css/all.min.css')}}">
@@ -28,26 +25,13 @@
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
+
   <div id="app">
+
     <div class="wrapper">
 
       <!-- Navbar -->
       @yield('navbar')
-
-      <!-- 
-      SEARCH FORM 
-      <form class="form-inline ml-3">
-          <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" type="search" placeholder="Search"
-                  aria-label="Search">
-              <div class="input-group-append">
-                  <button class="btn btn-navbar" type="submit">
-                      <i class="fas fa-search"></i>
-                  </button>
-              </div>
-          </div>
-      </form>
-      -->
 
       <!-- Main Sidebar Container -->
       <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -62,9 +46,11 @@
         <div class="sidebar">
           <!-- Sidebar user panel (optional) -->
           <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+
             <div class="image">
               <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
             </div>
+
             <div class="info">
               <a href="#" class="d-block">
                 @guest
@@ -83,6 +69,7 @@
                 @endguest
               </a>
             </div>
+
           </div>
 
           <!-- Sidebar Menu -->
@@ -111,6 +98,7 @@
 
               <!-- Medicos -->
               <li class="nav-item has-treeview">
+
                 <a href="#" class="nav-link active">
                   <i class="nav-icon fas fa-user-md"></i>
                   <p>
@@ -118,25 +106,30 @@
                     <i class="right fas fa-angle-left"></i>
                   </p>
                 </a>
+
                 <ul class="nav nav-treeview">
+
                   <li class="nav-item">
                     <a href="{{url('medicos/create')}}" class="nav-link active">
                       <i class="fas fa-plus nav-icon"></i>
                       <p>Registrar</p>
                     </a>
                   </li>
+
                   <li class="nav-item">
                     <a href="{{url('medicos')}}" class="nav-link active">
                       <i class="fas fa-id-card-alt nav-icon"></i>
                       <p>Todos los registros</p>
                     </a>
                   </li>
+
                 </ul>
               </li>
 
               <!-- Pacientes -->
 
               <li class="nav-item has-treeview">
+
                 <a href="#" class="nav-link active">
                   <i class="nav-icon fas fa-user-injured"></i>
                   <p>
@@ -144,19 +137,23 @@
                     <i class="right fas fa-angle-left"></i>
                   </p>
                 </a>
+
                 <ul class="nav nav-treeview">
+
                   <li class="nav-item">
-                    <a href="#" class="nav-link active">
+                    <a href="{{ url('pacientes/create')}}" class="nav-link active">
                       <i class="fas fa-plus nav-icon"></i>
                       <p>Registrar</p>
                     </a>
                   </li>
+
                   <li class="nav-item">
-                    <a href="#" class="nav-link active">
+                    <a href="{{url('/pacientes')}}" class="nav-link active">
                       <i class="fas fa-id-card-alt nav-icon"></i>
                       <p>Todos los registros</p>
                     </a>
                   </li>
+
                 </ul>
               </li>
 
@@ -172,13 +169,13 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="#" class="nav-link active">
+                    <a href="{{ url('habitaciones/create') }}" class="nav-link active">
                       <i class="fas fa-plus nav-icon"></i>
                       <p>Registrar</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="#" class="nav-link active">
+                    <a href="{{ url('/habitaciones') }}" class="nav-link active">
                       <i class="fas fa-id-card-alt nav-icon"></i>
                       <p>Todos los registros</p>
                     </a>
@@ -239,6 +236,7 @@
               </li>
             </ul>
           </nav>
+
         </div>
         <!-- /.slidebar-menu -->
       </aside>
@@ -270,12 +268,19 @@
           Desarrollado by <a href="https://github.com/cess15"> César Lata </a>
         </div>
         <!-- Default to the left -->
-      <strong>Copyright &copy; 2020-{{ date('Y')+1 }}<a href="https://adminlte.io"> Cuida tu vida</a>.</strong> All rights
+        <strong>Copyright &copy; 2020-{{ date('Y')+1 }}<a href="https://adminlte.io"> Cuida tu vida</a>.</strong> All
+        rights
         reserved.
       </footer>
     </div>
     <!-- ./wrapper -->
   </div>
+  <!-- Scripts -->
+  <script src="{{ asset('js/jquery-3.5.1.js') }}"></script>
+  <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('js/app.js') }}" defer></script>
+  <script src="{{ asset('dist/js/adminlte.js')}}"></script>
+  <script src="{{ asset('js/modal.js')}}"></script>
 </body>
 
 </html>
