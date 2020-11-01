@@ -21,12 +21,15 @@
 
   <!-- Styles -->
   <link href="{{ asset('dist/css/adminlte.min.css') }}" rel="stylesheet">
+
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+  <!-- DataTables -->
+  <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
-
-  <div id="app">
 
     <div class="wrapper">
 
@@ -245,18 +248,19 @@
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <div class="content-header">
+        <section class="content-header">
           <div class="container-fluid">
             @yield('content-header')
           </div>
-        </div>
+        </section>
         <!-- /.content-header -->
+
         <!-- Main content -->
-        <div class="content mt-3">
+        <section class="content mt-3">
           <div class="container-fluid">
             @yield('content')
           </div>
-        </div>
+        </section>
         <!-- /.content -->
       </div>
       <!-- /.content-wrapper -->
@@ -274,13 +278,21 @@
       </footer>
     </div>
     <!-- ./wrapper -->
-  </div>
-  <!-- Scripts -->
-  <script src="{{ asset('js/jquery-3.5.1.js') }}"></script>
-  <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-  <script src="{{ asset('js/app.js') }}" defer></script>
-  <script src="{{ asset('dist/js/adminlte.js')}}"></script>
-  <script src="{{ asset('js/modal.js')}}"></script>
+
+  <!-- jQuery -->
+  <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+  <script src="{{ asset('plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+  
+  
+  <!-- DataTables -->
+  <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
+  <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+  <script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+  <script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+
+  <script src="{{ asset('dist/js/adminlte.js') }}"></script>
+  <script src="{{ asset('js/modal.js') }}"></script>
+  @stack('scripts')
 </body>
 
 </html>
