@@ -2,7 +2,6 @@
 
 @section('navbar')
 @include('partials.nav')
-@include('partials.search')
 </nav>
 @endsection
 
@@ -17,75 +16,67 @@
 
 
 @section('content')
-<h6>
-    @if($query && !$medics->isEmpty())
-    <a href="{{ route('medicos.index')}}" class="btn btn-primary">Regresar</a>
-    <div class="alert alert-primary" role="alert">
-        Los resultados de su búsqueda cómo '{{ $query }}' son:
-    </div>
-    @endif
-    @if($query && $medics->isEmpty())
-    <a href="{{ route('medicos.index')}}" class="btn btn-primary mb-2">Regresar</a>
-    <div class="alert alert-danger" role="alert">
-        No se encontrarón resultados de su búsqueda cómo '{{ $query }}'
-    </div>
-    @endif
-</h6>
 <div class="table-responsive">
-    <table class="table table-hover table-dark ">
+    <table id="medicsTable" class="table table-bordered table-hover">
         <thead>
 
             <tr>
-                <th scope="col">#</th>
+                <th scope="col">ID</th>
                 <th scope="col">Tipo Documento</th>
-                <th scope="col">Nombres y Apellidos</th>
+                <th scope="col">NombresApellidos</th>
+                <th scope="col">Apellidos</th>
                 <th scope="col">Número documento</th>
                 <th scope="col">Especialidad</th>
                 <th scope="col">Número celular</th>
                 <th scope="col">Acciones</th>
             </tr>
         </thead>
-        <tbody>
-            @if ($medics->isEmpty())
-            <tr role="row">
-                <td colspan="7">
-                    <div>
-                        <div role="alert" aria-live="polite">
-                            <div class="text-center my-2">
-                                No hay registros para mostrar
-                            </div>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            @endif
-            @foreach ($medics as $medic)
-            <tr>
-                <th scope="row">{{$medic->id}}</th>
-                <td>{{$medic->tipoDocumento->descripcion}}</td>
-                <td>{{$medic->nombre}} {{$medic->apellido}}</td>
-                <td>{{$medic->num_documento}}</td>
-                <td>{{$medic->especialidad}}</td>
-                <td>{{$medic->num_celular}}</td>
-                <td>
-                    <a class="btn btn-warning mb-1 mr-1" href="{{ route('medicos.edit',$medic->id) }}">
-                        <i class="fa fa-user-edit"></i>
-                    </a>
-
-                    <a href="#" class="btn btn-danger mb-1 mr-1" data-toggle="modal"
-                        data-target="#eliminar_{{$medic->id}}">
-                        <i class="fa fa-trash-alt"></i>
-                    </a>
-                </td>
-            </tr>
-            @include('medicos.modal')
-            @endforeach
-        </tbody>
     </table>
 </div>
-<div class="row">
-    <div class="mx-auto">
-        {{ $medics->links() }}
-    </div>
-</div>
 @endsection
+@push('scripts')
+<script>
+    $(function(){
+        
+        $("#medicsTable").DataTable({
+            proccessing:true,
+            serverSide: true,
+            pageLength: 5,
+            ajax: `{{ route('dataMedic') }}`,
+            type:"GET",
+            language:{
+                "emptyTable":"No hay información",
+                "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                "lengthMenu": 'Mostrar <select>'+
+                                    '<option value="5">5</option>'+
+                                    '<option value="10">10</option>'+
+                                    '<option value="15">20</option>'+
+                                    '<option value="20">40</option>'+
+                                    '</select> registros',
+                "loadingRecords": "Cargando...",
+                "processing": "Procesando...",
+                "search": "Buscar:",
+                "zeroRecords": "Sin resultados encontrados",
+                "paginate": {
+                    "first": "Primero",
+                    "last": "Ultimo",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                }
+            },
+            columns: [
+                { data: 'id', name:'id'},
+                { data: 'documento_id' },
+                { data: 'nombre', name: 'nombre'},
+                { data: 'apellido', name: 'apellido' },
+                { data: 'num_documento' },
+                { data: 'especialidad'},
+                { data: 'num_celular'},
+                { data: 'btn', name:'btn'},
+            ]
+        });
+    });
+</script>
+@endpush

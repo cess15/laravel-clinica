@@ -25,4 +25,6 @@ Route::resource('pacientes', 'PacienteController')->middleware('auth');
 
 Route::resource('habitaciones', 'HabitacionController')->middleware('auth');
 
-Route::get('user-data','UserController@showData')->name('data');
+Route::get('user-data','UserController@showData')->name('data')->middleware('auth');
+
+Route::get('medic-data','MedicoController@showData')->name('dataMedic')->middleware('auth');

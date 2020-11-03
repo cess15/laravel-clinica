@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Medico;
-use App\TipoDocumento;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class MedicoController extends Controller
 {
@@ -13,16 +13,21 @@ class MedicoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
+        return view('medicos.index');
+    }
 
-        if ($request) {
-            $query = trim($request->get('search'));
-            $medics = Medico::where('nombre', 'LIKE', '%' . $query . '%')
-                ->orderBY('id', 'asc')
-                ->paginate(10);     
-            return view('medicos.index', compact('medics', 'query'));
-        }
+    public function showData()
+    {
+        $medics = Medico::all();
+        return DataTables::of($medics)
+            ->editColumn('documento_id', function ($medic) {
+                return $medic->tipoDocumento->descripcion;
+            })
+            ->addColumn('btn','medicos.actions')
+            ->rawColumns(['btn'])
+            ->make(true);
     }
 
     /**
@@ -51,8 +56,21 @@ class MedicoController extends Controller
         $medico->especialidad = request('especialidad');
         $medico->num_celular = request('num_celular');
 
-        $medico->save();
-        return redirect('/medicos');
+        $allMedics = Medico::all();
+        $isExist = null;
+        $numDocument = null;
+        foreach ($allMedics as $medic) {
+            $numDocument = $medic->num_documento;
+            $isExist = strcmp($numDocument, $medico->num_documento) === 0 ? true : false;
+            break;
+        }
+
+        if ($isExist) {
+            return view('medicos/create', compact('isExist', 'numDocument'));
+        } else {
+            $medico->save();
+            return redirect('/medicos');
+        }
     }
 
     /**
