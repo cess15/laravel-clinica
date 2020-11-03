@@ -15,6 +15,13 @@
 
 @section('content')
 <div class="container">
+    <h6>
+        @if($isExist?? '')
+        <div class="alert alert-danger" role="alert">
+            Ya se encuentra alguien registrado con el mismo número de documento {{$numDocument}}
+        </div>
+        @endif
+    </h6>
     <div class="row">
         <div class="col-sm-8">
             <form action="/medicos" method="POST">

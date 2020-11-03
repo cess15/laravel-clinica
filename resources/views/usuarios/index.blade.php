@@ -14,17 +14,19 @@
 @endsection
 
 @section('content')
-<table id="usersTable" class="table table-bordered table-hover">
-    <thead>
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Correo Electrónico</th>
-            <th scope="col">Fecha creada</th>
-            <th scope="col">Última modificación</th>
-        </tr>
-    </thead>
-</table>
+<div class="table-responsive">
+    <table id="usersTable" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Correo Electrónico</th>
+                <th scope="col">Fecha creada</th>
+                <th scope="col">Última modificación</th>
+            </tr>
+        </thead>
+    </table>
+</div>
 @endsection
 @push('scripts')
 <script>
