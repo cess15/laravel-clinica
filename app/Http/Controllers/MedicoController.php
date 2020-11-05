@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FormRequestMedico;
 use App\Medico;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\Validator;
 use Yajra\DataTables\DataTables;
 
 class MedicoController extends Controller
@@ -25,7 +28,7 @@ class MedicoController extends Controller
             ->editColumn('documento_id', function ($medic) {
                 return $medic->tipoDocumento->descripcion;
             })
-            ->addColumn('btn','medicos.actions')
+            ->addColumn('btn', 'medicos.actions')
             ->rawColumns(['btn'])
             ->make(true);
     }
@@ -46,7 +49,7 @@ class MedicoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FormRequestMedico $request)
     {
         $medico = new Medico();
         $medico->documento_id = intval(request('documento_id'));
@@ -56,21 +59,8 @@ class MedicoController extends Controller
         $medico->especialidad = request('especialidad');
         $medico->num_celular = request('num_celular');
 
-        $allMedics = Medico::all();
-        $isExist = null;
-        $numDocument = null;
-        foreach ($allMedics as $medic) {
-            $numDocument = $medic->num_documento;
-            $isExist = strcmp($numDocument, $medico->num_documento) === 0 ? true : false;
-            break;
-        }
-
-        if ($isExist) {
-            return view('medicos/create', compact('isExist', 'numDocument'));
-        } else {
-            $medico->save();
-            return redirect('/medicos');
-        }
+        $medico->save();
+        return redirect('/medicos');
     }
 
     /**
@@ -103,7 +93,7 @@ class MedicoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(FormRequestMedico $request, $id)
     {
         $medico = Medico::findOrFail($id);
         $medico->documento_id = $request->get('documento_id');

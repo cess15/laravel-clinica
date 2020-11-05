@@ -35,6 +35,7 @@
 </div>
 @endsection
 @push('scripts')
+<script src="{{ asset('js/modal.js') }}"></script>
 <script>
     $(function(){
         

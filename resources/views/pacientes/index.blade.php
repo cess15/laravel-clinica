@@ -64,17 +64,18 @@
             <td>{{$patient->num_documento}}</td>
             <td>{{$patient->domicilio}}</td>
             @if($patient->medicos!=null)
-                <td>{{$patient->medicos->nombre}} {{$patient->medicos->apellido}}</td>
+            <td>{{$patient->medicos->nombre}} {{$patient->medicos->apellido}}</td>
             @endif
             @if($patient->medicos==null)
-                <td></td>
+            <td></td>
             @endif
             <td>
                 <a class="btn btn-warning mb-1 mr-1" href="{{ route('pacientes.edit',$patient->id) }}">
                     <i class="fa fa-user-edit"></i>
                 </a>
 
-                <a href="#" class="btn btn-danger mb-1 mr-1" data-toggle="modal" data-target="#eliminar_{{$patient->id}}">
+                <a href="#" class="btn btn-danger mb-1 mr-1" data-toggle="modal"
+                    data-target="#eliminar_{{$patient->id}}">
                     <i class="fa fa-trash-alt"></i>
                 </a>
             </td>
@@ -89,3 +90,6 @@
     </div>
 </div>
 @endsection
+@push('scripts')
+<script src="{{ asset('js/modal.js') }}"></script>
+@endpush

@@ -76,14 +76,14 @@
                 <td>{{$habitacion->numero}}</td>
                 <td>
                     @if ($habitacion->estadoHabitacion->descripcion=='Disponible')
-                        <span class="btn btn-success disabled">
-                            {{$habitacion->estadoHabitacion->descripcion}}
-                        </span>
+                    <span class="btn btn-success disabled">
+                        {{$habitacion->estadoHabitacion->descripcion}}
+                    </span>
                     @endif
                     @if ($habitacion->estadoHabitacion->descripcion=='Ocupada')
-                        <span class="btn btn-danger disabled">
-                            {{$habitacion->estadoHabitacion->descripcion}}
-                        </span>
+                    <span class="btn btn-danger disabled">
+                        {{$habitacion->estadoHabitacion->descripcion}}
+                    </span>
                     @endif
                 </td>
                 <td>
@@ -91,7 +91,8 @@
                         <i class="fa fa-user-edit"></i>
                     </a>
 
-                    <a href="#" class="btn btn-danger mb-1 mr-1" data-toggle="modal" data-target="#eliminar_{{$habitacion->id}}">
+                    <a href="#" class="btn btn-danger mb-1 mr-1" data-toggle="modal"
+                        data-target="#eliminar_{{$habitacion->id}}">
                         <i class="fa fa-trash-alt"></i>
                     </a>
                 </td>
@@ -107,3 +108,6 @@
     </div>
 </div>
 @endsection
+@push('scripts')
+<script src="{{ asset('js/modal.js') }}"></script>
+@endpush
