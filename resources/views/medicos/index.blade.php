@@ -23,7 +23,7 @@
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Tipo Documento</th>
-                <th scope="col">NombresApellidos</th>
+                <th scope="col">Nombres</th>
                 <th scope="col">Apellidos</th>
                 <th scope="col">Número documento</th>
                 <th scope="col">Especialidad</th>

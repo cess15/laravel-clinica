@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\FormRequestMedico;
 use App\Medico;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
-use Illuminate\Validation\Validator;
 use Yajra\DataTables\DataTables;
 
 class MedicoController extends Controller

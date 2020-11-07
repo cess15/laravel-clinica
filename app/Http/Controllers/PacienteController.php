@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Paciente;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class PacienteController extends Controller
 {
@@ -12,15 +13,28 @@ class PacienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        if ($request) {
-            $query = trim($request->get('search'));
-            $patients = Paciente::where('nombre', 'LIKE', '%' . $query . '%')
-                ->orderBY('id', 'asc')
-                ->paginate(10);
-            return view('pacientes.index', compact('patients', 'query'));
-        }
+        return view('pacientes.index');
+    }
+
+    public function showData()
+    {
+        $patients = Paciente::all();
+        return DataTables::of($patients)
+            ->editColumn('documento_id', function ($patient) {
+                return $patient->tipoDocumento->descripcion;
+            })
+            ->editColumn('medico_id', function ($patient) {
+                if ($patient->medicos != null) {
+                    return $patient->medicos->nombre . ' ' . $patient->medicos->apellido;
+                } else {
+                    return '';
+                }
+            })
+            ->addColumn('btn', 'pacientes.actions')
+            ->rawColumns(['btn'])
+            ->make(true);
     }
 
     /**
