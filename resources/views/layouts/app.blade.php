@@ -55,7 +55,7 @@
           </div>
 
           <div class="info">
-            <a href="#" class="d-block">
+            <a href="{{ url('/') }}" class="d-block">
               @guest
               <a class="nav-link bg-success" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
               @else

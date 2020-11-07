@@ -43,12 +43,18 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="name">Nombre</label>
-                                <input type="name" name="name" class="form-control" id="name" value="{{$user->name}}">
+                                <input type="name" name="name" class="form-control" id="name" value="{{ $user->name }}">
+                                @error('name')
+                                <span class="error text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="email">Correo electrónico</label>
                                 <input type="email" name="email" class="form-control" id="email"
-                                    value="{{$user->email}}">
+                                    value="{{ $user->email }}">
+                                @error('email')
+                                <span class="error text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Actualizar</button>

@@ -35,7 +35,7 @@
                     <div class="input-group mb-3">
                         <input id="name" type="text" placeholder="Nombre completo"
                             class="form-control @error('name') is-invalid @enderror" name="name"
-                            value="{{ old('name') }}" required autocomplete="name" autofocus>
+                            value="{{ old('name') }}" autocomplete="name" autofocus>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -51,7 +51,7 @@
                     <div class="input-group mb-3">
                         <input id="email" type="email" placeholder="Email"
                             class="form-control @error('email') is-invalid @enderror" name="email"
-                            value="{{ old('email') }}" required autocomplete="email">
+                            value="{{ old('email') }}" autocomplete="email">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
@@ -66,7 +66,7 @@
                     </div>
                     <div class="input-group mb-3">
                         <input id="password" type="password" placeholder="Contraseña"
-                            class="form-control @error('password') is-invalid @enderror" name="password" required
+                            class="form-control @error('password') is-invalid @enderror" name="password" 
                             autocomplete="new-password">
                         <div class="input-group-append">
                             <div class="input-group-text">
@@ -82,7 +82,7 @@
                     </div>
                     <div class="input-group mb-3">
                         <input id="password-confirm" type="password" placeholder="Confirme contraseña"
-                            class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            class="form-control" name="password_confirmation" autocomplete="new-password">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
