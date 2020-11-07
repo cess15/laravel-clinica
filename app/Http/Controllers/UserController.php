@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FormRequestUser;
 use App\User;
-use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 
 class UserController extends Controller
@@ -62,7 +62,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(FormRequestUser $request, $id)
     {
         $usuario = User::findOrFail($id);
 

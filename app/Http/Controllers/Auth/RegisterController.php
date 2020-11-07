@@ -53,6 +53,16 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ], $messages = [
+            'name.required' => 'El :attribute es obligatorio',
+            'email.required'=>' El :attribute es obligatorio',
+            'email.unique'=>'El :attribute ya esta en uso',
+            'password.required'=>' La :attribute es obligatoria',
+            'password.confirmed'=>' La :attribute debe ser la misma',
+        ], $attribute = [
+            'name' => 'nombre de usuario',
+            'email'=>'correo electrónico',
+            'password'=>'contraseña'
         ]);
     }
 
