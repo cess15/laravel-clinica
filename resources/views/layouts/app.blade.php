@@ -113,14 +113,14 @@
               <ul class="nav nav-treeview">
 
                 <li class="nav-item">
-                  <a href="{{url('medicos/create')}}" class="nav-link active">
+                  <a href="{{url('medicos/create')}}" class="{{ Request::path() === 'medicos/create' ? 'nav-link active' : 'nav-link' }}">
                     <i class="fas fa-plus nav-icon"></i>
                     <p>Registrar</p>
                   </a>
                 </li>
 
                 <li class="nav-item">
-                  <a href="{{url('medicos')}}" class="nav-link active">
+                  <a href="{{url('medicos')}}" class="{{ Request::path() === 'medicos' ? 'nav-link active' : 'nav-link' }}">
                     <i class="fas fa-id-card-alt nav-icon"></i>
                     <p>Todos los registros</p>
                   </a>
@@ -144,14 +144,14 @@
               <ul class="nav nav-treeview">
 
                 <li class="nav-item">
-                  <a href="{{ url('pacientes/create')}}" class="nav-link active">
+                  <a href="{{ url('pacientes/create')}}" class="{{ Request::path()==='pacientes/create' ? 'nav-link active' : 'nav-link' }}">
                     <i class="fas fa-plus nav-icon"></i>
                     <p>Registrar</p>
                   </a>
                 </li>
 
                 <li class="nav-item">
-                  <a href="{{url('/pacientes')}}" class="nav-link active">
+                  <a href="{{url('pacientes')}}" class="{{ Request::path()==='pacientes' ? 'nav-link active' : 'nav-link' }}">
                     <i class="fas fa-id-card-alt nav-icon"></i>
                     <p>Todos los registros</p>
                   </a>
@@ -172,13 +172,13 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{ url('habitaciones/create') }}" class="nav-link active">
+                  <a href="{{ url('habitaciones/create') }}" class="{{ Request::path()==='habitaciones/create' ? 'nav-link active' : 'nav-link' }}">
                     <i class="fas fa-plus nav-icon"></i>
                     <p>Registrar</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ url('/habitaciones') }}" class="nav-link active">
+                  <a href="{{ url('habitaciones') }}" class="{{ Request::path()==='habitaciones' ? 'nav-link active' : 'nav-link' }}">
                     <i class="fas fa-id-card-alt nav-icon"></i>
                     <p>Todos los registros</p>
                   </a>
