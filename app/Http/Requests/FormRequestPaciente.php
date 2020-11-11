@@ -4,9 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class FormRequestMedico extends FormRequest
+class FormRequestPaciente extends FormRequest
 {
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -28,21 +27,19 @@ class FormRequestMedico extends FormRequest
             'nombre' => 'required',
             'apellido' => 'required',
             'documento_id' => 'required',
-            'num_documento' => 'required|unique:pacientes|unique:medicos,num_documento,' . $this->route('medico'), '|min:10',
-            'especialidad' => 'required',
-            'num_celular' => 'required|min:10|numeric'
+            'num_documento' => 'required|unique:medicos|unique:pacientes,num_documento,' . $this->route('paciente'), '|min:10',
+            'domicilio' => 'required',
         ];
     }
 
     public function attributes()
     {
         return [
-            'nombre' => 'nombre del médico',
-            'apellido' => 'apellido del médico',
+            'nombre' => 'nombre del paciente',
+            'apellido' => 'apellido del paciente',
             'documento_id' => 'seleccione una opción',
             'num_documento' => 'número de documento',
-            'especialidad' => 'la especialidad',
-            'num_celular' => 'número de celular',
+            'domicilio' => 'el domicilio',
         ];
     }
 
@@ -55,12 +52,7 @@ class FormRequestMedico extends FormRequest
             'num_documento.required' => 'El :attribute es obligatorio',
             'num_documento.unique' => 'El :attribute ya existe',
             'num_documento.min' => 'El :attribute debe tener 10 dígitos',
-            'num_documento.numeric' => 'El :attribute debe contener sólo números',
-            'especialidad.required' => 'Por favor, específique :attribute',
-            'num_celular.required' => 'El :attribute es obligatorio',
-            'num_celular.min' => 'El :attribute debe tener 10 dígitos',
-            'num_celular.numeric' => 'El :attribute debe contener sólo números',
-
+            'domicilio.required' => 'Por favor, específique :attribute',
         ];
     }
 }

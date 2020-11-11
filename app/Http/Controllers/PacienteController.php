@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FormRequestPaciente;
 use App\Paciente;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -53,7 +54,7 @@ class PacienteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FormRequestPaciente $request)
     {
         $paciente = new Paciente();
         $paciente->documento_id = intval(request('documento_id'));
@@ -96,7 +97,7 @@ class PacienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(FormRequestPaciente $request, $id)
     {
         $paciente = Paciente::findOrFail($id);
         $paciente->documento_id = $request->get('documento_id');
