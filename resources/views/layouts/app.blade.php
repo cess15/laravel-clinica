@@ -26,6 +26,7 @@
 
   <!-- DataTables -->
   <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('plugins/datatables-autofill/css/autoFill.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
 </head>
 
@@ -257,9 +258,7 @@
 
       <!-- Main content -->
       <section class="content mt-3">
-        <div class="container-fluid">
           @yield('content')
-        </div>
       </section>
       <!-- /.content -->
     </div>
@@ -287,6 +286,7 @@
   <!-- DataTables -->
   <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
   <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+  <script src="{{ asset('plugins/datatables-autofill/js/dataTables.autoFill.min.js')}}"></script>
   <script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
   <script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
 

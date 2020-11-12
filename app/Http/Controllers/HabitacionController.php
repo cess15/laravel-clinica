@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Habitacion;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class HabitacionController extends Controller
 {
@@ -12,15 +13,30 @@ class HabitacionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        if ($request) {
-            $query = trim($request->get('search'));
-            $habitaciones = Habitacion::where('numero', 'LIKE', '%' . $query . '%')
-                ->orderBY('id', 'asc')
-                ->paginate(10);     
-            return view('habitaciones.index', compact('habitaciones', 'query'));
-        }
+        return view('habitaciones.index');
+    }
+
+    public function showData()
+    {
+        $habitaciones = Habitacion::all();
+        return DataTables::of($habitaciones)
+            ->editColumn('piso_id', function ($habitacion) {
+                return $habitacion->pisos->descripcion;
+            })
+            ->editColumn('tipo_id', function ($habitacion) {
+                return $habitacion->tipoHabitacion->descripcion;
+            })
+            ->editColumn('genero_id', function ($habitacion) {
+                return $habitacion->genero->descripcion;
+            })
+            ->editColumn('estado_id', function ($habitacion) {
+                return $habitacion->estadoHabitacion->descripcion;
+            })
+            ->addColumn('btn','habitaciones.actions')
+            ->rawColumns(['btn'])
+            ->make(true);
     }
 
     /**
@@ -42,11 +58,11 @@ class HabitacionController extends Controller
     public function store(Request $request)
     {
         $habitacion = new Habitacion();
-        $habitacion->piso_id=intval(request('piso_id'));
-        $habitacion->estado_id=intval(request('estado_id'));
-        $habitacion->tipo_id=intval(request('tipo_id'));
-        $habitacion->genero_id=intval(request('genero_id'));
-        $habitacion->numero=request('numero');
+        $habitacion->piso_id = intval(request('piso_id'));
+        $habitacion->estado_id = intval(request('estado_id'));
+        $habitacion->tipo_id = intval(request('tipo_id'));
+        $habitacion->genero_id = intval(request('genero_id'));
+        $habitacion->numero = request('numero');
 
         $habitacion->save();
         return redirect('/habitaciones');
@@ -71,7 +87,8 @@ class HabitacionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $habitacion=Habitacion::findOrFail($id);
+        return view('habitaciones.edit',compact('habitacion'));
     }
 
     /**
@@ -83,7 +100,15 @@ class HabitacionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $habitacion = Habitacion::findOrFail($id);
+        $habitacion->piso_id = $request->get('piso_id');
+        $habitacion->estado_id = $request->get('estado_id');
+        $habitacion->tipo_id = $request->get('tipo_id');
+        $habitacion->genero_id = $request->get('genero_id');
+        $habitacion->numero = $request->get('numero');
+
+        $habitacion->update();
+        return redirect('/habitaciones');
     }
 
     /**
@@ -94,6 +119,8 @@ class HabitacionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $habitacion=Habitacion::findOrFail($id);
+        $habitacion->delete();
+        return redirect('/habitaciones');
     }
 }

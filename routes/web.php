@@ -30,3 +30,5 @@ Route::get('user-data','UserController@showData')->name('data')->middleware('aut
 Route::get('medic-data','MedicoController@showData')->name('dataMedic')->middleware('auth');
 
 Route::get('patient-data','PacienteController@showData')->name('dataPatient')->middleware('auth');
+
+Route::get('room-data','HabitacionController@showData')->name('dataRoom')->middleware('auth');
