@@ -2,34 +2,32 @@
 
 @section('navbar')
 @include('partials.nav')
-</nav>
-@endsection
-
-@section('content-header')
-<div class="row mb-2">
-    <div class="col-sm-6">
-        <h1 class="m-0 text-dark">Lista de Pacientes</h1>
-    </div><!-- /.col -->
-</div><!-- /.row -->
 @endsection
 
 @section('content')
-<div class="table-responsive">
-    <table id="patientsTable" class="table table-bordered table-hover">
-        <thead>
-    
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Tipo Documento</th>
-                <th scope="col">Nombres</th>
-                <th scope="col">Apellidos</th>
-                <th scope="col">Número documento</th>
-                <th scope="col">Domicilio</th>
-                <th scope="col">Médico Responsable</th>
-                <th scope="col">Acciones</th>
-            </tr>
-        </thead>
-    </table>
+<div class="container">
+    <div class="row mb-2">
+        <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Lista de Pacientes</h1>
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+    <div class="table-responsive">
+        <table id="patientsTable" class="display nowrap table table-bordered table-hover" style="width: 100%;">
+            <thead>
+        
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Tipo Documento</th>
+                    <th scope="col">Nombres</th>
+                    <th scope="col">Apellidos</th>
+                    <th scope="col">Número documento</th>
+                    <th scope="col">Domicilio</th>
+                    <th scope="col">Médico Responsable</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
 </div>
 @endsection
 @push('scripts')
@@ -43,6 +41,8 @@
             pageLength: 5,
             ajax: `{{ route('dataPatient') }}`,
             type:"GET",
+            autoFill:true,
+            responsive:true,
             language:{
                 "emptyTable":"No hay información",
                 "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",

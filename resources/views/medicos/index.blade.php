@@ -2,36 +2,35 @@
 
 @section('navbar')
 @include('partials.nav')
-</nav>
-@endsection
-
-@section('content-header')
-<div class="row mb-2">
-    <div class="col-sm-6">
-        <h1 class="m-0 text-dark">Lista de Medicos</h1>
-    </div><!-- /.col -->
-</div><!-- /.row -->
 @endsection
 
 
 
 @section('content')
-<div class="table-responsive">
-    <table id="medicsTable" class="table table-bordered table-hover">
-        <thead>
+<div class="container">
+    <div class="row mb-2">
+        <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Lista de Medicos</h1>
+        </div><!-- /.col -->
+    </div><!-- /.row -->
 
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Tipo Documento</th>
-                <th scope="col">Nombres</th>
-                <th scope="col">Apellidos</th>
-                <th scope="col">Número documento</th>
-                <th scope="col">Especialidad</th>
-                <th scope="col">Número celular</th>
-                <th scope="col">Acciones</th>
-            </tr>
-        </thead>
-    </table>
+    <div class="table-responsive">
+        <table id="medicsTable" class="display nowrap table table-bordered table-hover" style="width: 100%;">
+            <thead>
+
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Tipo Documento</th>
+                    <th scope="col">Nombres</th>
+                    <th scope="col">Apellidos</th>
+                    <th scope="col">Número documento</th>
+                    <th scope="col">Especialidad</th>
+                    <th scope="col">Número celular</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
 </div>
 @endsection
 @push('scripts')
@@ -39,12 +38,14 @@
 <script>
     $(function(){
         
-        $("#medicsTable").DataTable({
+        var table = $("#medicsTable").DataTable({
             proccessing:true,
             serverSide: true,
             pageLength: 5,
             ajax: `{{ route('dataMedic') }}`,
             type:"GET",
+            autoFill:true,
+            responsive:true,
             language:{
                 "emptyTable":"No hay información",
                 "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
@@ -76,7 +77,7 @@
                 { data: 'especialidad'},
                 { data: 'num_celular'},
                 { data: 'btn', name:'btn'},
-            ]
+            ],
         });
     });
 </script>

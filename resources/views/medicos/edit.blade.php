@@ -2,7 +2,6 @@
 
 @section('navbar')
 @include('partials.nav')
-</nav>
 @endsection
 
 @section('content')

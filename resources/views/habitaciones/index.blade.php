@@ -2,7 +2,6 @@
 
 @section('navbar')
 @include('partials.nav')
-</nav>
 @endsection
 
 
@@ -14,7 +13,7 @@
             <h1 class="m-0 mb-2 text-dark">Lista de Habitaciones</h1>
         </div><!-- /.col -->
     </div><!-- /.row -->
-    
+
     <div class="table-responsive">
         <table id="tableRoom" class="display nowrap table table-bordered table-hover" style="width:100%;">
             <thead>

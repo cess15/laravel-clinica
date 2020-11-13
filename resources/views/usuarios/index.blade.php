@@ -5,27 +5,25 @@
 </nav>
 @endsection
 
-@section('content-header')
-<div class="row mb-2">
-    <div class="col-sm-6">
-        <h1 class="m-0 text-dark">Lista de Usuarios</h1>
-    </div><!-- /.col -->
-</div><!-- /.row -->
-@endsection
-
 @section('content')
-<div class="table-responsive">
-    <table id="usersTable" class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Correo Electrónico</th>
-                <th scope="col">Fecha creada</th>
-                <th scope="col">Última modificación</th>
-            </tr>
-        </thead>
-    </table>
+<div class="container">
+    <div class="row mb-2">
+        <div class="col-sm-12">
+            <h1 class="m-0 text-dark">Lista de Usuarios</h1>
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+    <div class="table-responsive">
+        <table id="usersTable" class="display nowrap table table-bordered table-hover" style="width: 100%;">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Correo Electrónico</th>
+                    <th scope="col">Fecha creada</th>
+                    <th scope="col">Última modificación</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
 </div>
 @endsection
 @push('scripts')
@@ -38,6 +36,8 @@
             pageLength: 5,
             ajax: `{{ route('data') }}`,
             type:"GET",
+            autoFill:true,
+            responsive:true,
             language:{
                 "emptyTable":"No hay información",
                 "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
@@ -61,7 +61,6 @@
                 }
             },
             columns: [
-                { data: 'id' },
                 { data: 'name' },
                 { data: 'email' },
                 { data: 'created_at'},

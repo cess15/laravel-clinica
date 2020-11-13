@@ -2,7 +2,6 @@
 
 @section('navbar')
 @include('partials.nav')
-</nav>
 @endsection
 
 @section('content')
@@ -53,7 +52,7 @@
                         <div class="form-group col-md-6">
                             <label for="num_documento">Número documento</label>
                             <input type="text" name="num_documento" class="form-control" id="num_documento"
-                                value="{{$paciente->num_documento}}" placeholder="Número de pasaporte o cédula">
+                                value="{{$paciente->num_documento}}" placeholder="Número de pasaporte o cédula" maxlength="10">
                             @error('num_documento')
                             <span class="error text-danger">{{ $message }}</span>
                             @enderror
