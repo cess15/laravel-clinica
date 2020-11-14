@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\FormRequestMedico;
 use App\Medico;
+use App\TipoDocumento;
 use Yajra\DataTables\DataTables;
 
 class MedicoController extends Controller
@@ -37,7 +38,8 @@ class MedicoController extends Controller
      */
     public function create()
     {
-        return view('medicos.create');
+        $tipoDocumento = TipoDocumento::all();
+        return view('medicos.create', compact('tipoDocumento'));
     }
 
     /**
@@ -80,7 +82,8 @@ class MedicoController extends Controller
     public function edit($id)
     {
         $medico = Medico::findOrFail($id);
-        return view('medicos.edit', compact('medico'));
+        $tipoDocumento = TipoDocumento::all();
+        return view('medicos.edit', compact('medico', 'tipoDocumento'));
     }
 
     /**

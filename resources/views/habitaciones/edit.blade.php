@@ -24,8 +24,12 @@
                             <label for="genero_id">Género</label>
                             <select id="genero_id" name="genero_id" class="form-control">
                                 <option selected disabled>-- Seleccione --</option>
-                                <option value="1" @if($habitacion->genero_id===1) selected @endif>Masculino</option>
-                                <option value="2" @if($habitacion->genero_id===2) selected @endif>Masculino</option>
+                                @foreach ($generos as $genero)
+                                <option value="{{$genero->id}}"
+                                    {{$habitacion->genero_id===$genero->id  ? 'selected' : '' }}>
+                                    {{$genero->descripcion}}
+                                </option>
+                                @endforeach
                             </select>
                             @error('genero_id')
                             <span class="text-danger">{{ $message }}</span>
@@ -35,8 +39,11 @@
                             <label for="tipo_id">Tipo de Habitación</label>
                             <select id="tipo_id" name="tipo_id" class="form-control">
                                 <option selected disabled>-- Seleccione --</option>
-                                <option value="1" @if($habitacion->tipo_id===1) selected @endif>Simple</option>
-                                <option value="2" @if($habitacion->tipo_id===2) selected @endif>Doble</option>
+                                @foreach ($tipoHabitaciones as $tipoHabitacion)
+                                <option value="{{$tipoHabitacion->id}}"
+                                    {{$tipoHabitacion->id===$habitacion->tipo_id ? 'selected' : ''}}>
+                                    {{$tipoHabitacion->descripcion}}</option>
+                                @endforeach
                             </select>
                             @error('tipo_id')
                             <span class="text-danger">{{ $message }}</span>
@@ -48,13 +55,10 @@
                             <label for="piso_id">Piso</label>
                             <select id="piso_id" name="piso_id" class="form-control">
                                 <option selected disabled>-- Seleccione --</option>
-                                <option value="1" @if($habitacion->tipo_id===1) selected @endif>Planta Baja</option>
-                                <option value="2" @if($habitacion->tipo_id===2) selected @endif>Primer Piso</option>
-                                <option value="3" @if($habitacion->tipo_id===3) selected @endif>Segundo Piso</option>
-                                <option value="4" @if($habitacion->tipo_id===4) selected @endif>Tercer Piso</option>
-                                <option value="5" @if($habitacion->tipo_id===5) selected @endif>Cuarto Piso</option>
-                                <option value="6" @if($habitacion->tipo_id===6) selected @endif>Quinto Piso</option>
-                                <option value="7" @if($habitacion->tipo_id===7) selected @endif>Último piso</option>
+                                @foreach ($pisos as $piso)
+                                <option value="{{$piso->id}}" {{$habitacion->piso_id===$piso->id ? 'selected' : ''}}>
+                                    {{$piso->descripcion}}</option>
+                                @endforeach
                             </select>
                             @error('piso_id')
                             <span class="text-danger">{{ $message }}</span>
@@ -62,11 +66,18 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="estado_id">Estado de Habitación</label>
+                            <input name="estado_id" type="hidden" value="{{$habitacion->estado_id}}">
                             <select id="estado_id" name="estado_id" class="form-control">
                                 <option selected disabled>-- Seleccione --</option>
-                                <option value="1" @if($habitacion->estado_id===1) selected @endif>Disponible</option>
-                                <option value="2" @if($habitacion->estado_id===2) selected @endif>Ocupada</option>
+                                @foreach ($estadoHabitaciones as $estadoHabitacion)
+                                <option value="{{$estadoHabitacion->id}}"
+                                    {{$habitacion->estado_id===$estadoHabitacion->id ? 'selected' : ''}} {{$habitacion->hay_paciente===0 ? '' : 'disabled'}}>
+                                    {{$estadoHabitacion->descripcion}}</option>
+                                @endforeach
                             </select>
+                            @error('estado_id')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-group row">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\FormRequestPaciente;
 use App\Paciente;
+use App\TipoDocumento;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
@@ -45,7 +46,8 @@ class PacienteController extends Controller
      */
     public function create()
     {
-        return view('pacientes.create');
+        $tipoDocumento = TipoDocumento::all();
+        return view('pacientes.create', compact('tipoDocumento'));
     }
 
     /**
@@ -86,8 +88,9 @@ class PacienteController extends Controller
      */
     public function edit($id)
     {
-        $paciente=Paciente::findOrFail($id);
-        return view('pacientes.edit', compact('paciente'));
+        $tipoDocumento = TipoDocumento::all();
+        $paciente = Paciente::findOrFail($id);
+        return view('pacientes.edit', compact('paciente', 'tipoDocumento'));
     }
 
     /**

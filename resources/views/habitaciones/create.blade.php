@@ -24,8 +24,9 @@
                             <label for="genero_id">Género</label>
                             <select id="genero_id" name="genero_id" class="form-control">
                                 <option selected disabled>-- Seleccione --</option>
-                                <option value="1">Masculino</option>
-                                <option value="2">Femenino</option>
+                                @foreach ($generos as $genero)
+                                <option value="{{$genero->id}}">{{$genero->descripcion}}</option>
+                                @endforeach
                             </select>
                             @error('genero_id')
                             <span class="error text-danger">{{ $message}}</span>
@@ -35,8 +36,9 @@
                             <label for="tipo_id">Tipo de Habitación</label>
                             <select id="tipo_id" name="tipo_id" class="form-control">
                                 <option selected disabled>-- Seleccione --</option>
-                                <option value="1">Simple</option>
-                                <option value="2">Doble</option>
+                                @foreach ($tipoHabitaciones as $tipoHabitacion)
+                                <option value="{{$tipoHabitacion->id}}">{{$tipoHabitacion->descripcion}}</option>
+                                @endforeach
                             </select>
                             @error('tipo_id')
                             <span class="text-danger">{{ $message }}</span>
@@ -48,13 +50,9 @@
                             <label for="piso_id">Piso</label>
                             <select id="piso_id" name="piso_id" class="form-control">
                                 <option selected disabled>-- Seleccione --</option>
-                                <option value="1">Planta Baja</option>
-                                <option value="2">Primer Piso</option>
-                                <option value="3">Segundo Piso</option>
-                                <option value="4">Tercer Piso</option>
-                                <option value="5">Cuarto Piso</option>
-                                <option value="6">Quinto Piso</option>
-                                <option value="7">Último Piso</option>
+                                @foreach ($pisos as $piso)
+                                <option value="{{$piso->id}}">{{$piso->descripcion}}</option>
+                                @endforeach
                             </select>
                             @error('piso_id')
                             <span class="text-danger">{{ $message }}</span>
@@ -64,8 +62,9 @@
                             <label for="estado_id">Estado de Habitación</label>
                             <select id="estado_id" name="estado_id" class="form-control">
                                 <option selected disabled>-- Seleccione --</option>
-                                <option value="1">Disponible</option>
-                                <option value="2">Ocupada</option>
+                                @foreach ($estadoHabitaciones as $estadoHabitacion)
+                                <option value="{{$estadoHabitacion->id}}">{{$estadoHabitacion->descripcion}}</option>
+                                @endforeach
                             </select>
                             @error('estado_id')
                             <span class="text-danger">{{ $message }}</span>

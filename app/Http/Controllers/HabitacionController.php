@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\EstadoHabitacion;
+use App\Genero;
 use App\Habitacion;
 use App\Http\Requests\FormRequestHabitacion;
+use App\Piso;
+use App\TipoHabitacion;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
@@ -47,7 +51,11 @@ class HabitacionController extends Controller
      */
     public function create()
     {
-        return view('habitaciones.create');
+        $generos = Genero::all();
+        $tipoHabitaciones = TipoHabitacion::all();
+        $pisos = Piso::all();
+        $estadoHabitaciones = EstadoHabitacion::all();
+        return view('habitaciones.create', compact('generos', 'tipoHabitaciones', 'pisos', 'estadoHabitaciones'));
     }
 
     /**
@@ -88,8 +96,12 @@ class HabitacionController extends Controller
      */
     public function edit($id)
     {
+        $generos = Genero::all();
+        $tipoHabitaciones = TipoHabitacion::all();
+        $pisos = Piso::all();
+        $estadoHabitaciones = EstadoHabitacion::all();
         $habitacion = Habitacion::findOrFail($id);
-        return view('habitaciones.edit', compact('habitacion'));
+        return view('habitaciones.edit', compact('habitacion', 'generos', 'tipoHabitaciones', 'pisos', 'estadoHabitaciones'));
     }
 
     /**

@@ -42,8 +42,9 @@
                             <label for="documento_id">Tipo Documento</label>
                             <select id="documento_id" name="documento_id" class="form-control">
                                 <option selected disabled>-- Seleccione --</option>
-                                <option value="1">Pasaporte</option>
-                                <option value="2">Cédula</option>
+                                @foreach ($tipoDocumento as $tipo)
+                                <option value="{{$tipo->id}}">{{$tipo->descripcion}}</option>
+                                @endforeach
                             </select>
                             @error('documento_id')
                             <span class="error text-danger">{{ $message }}</span>

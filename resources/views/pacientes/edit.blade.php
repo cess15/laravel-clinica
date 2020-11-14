@@ -42,8 +42,11 @@
                             <label for="documento_id">Tipo Documento</label>
                             <select id="documento_id" name="documento_id" class="form-control">
                                 <option selected disabled>-- Seleccione --</option>
-                                <option value="1" @if($paciente->documento_id==1) selected @endif>Pasaporte</option>
-                                <option value="2" @if($paciente->documento_id==2) selected @endif>Cédula</option>
+                                @foreach ($tipoDocumento as $tipo)
+                                <option value="{{$tipo->id}}"
+                                    {{ $paciente->documento_id===$tipo->id ? 'selected' : '' }}>{{$tipo->descripcion}}
+                                </option>
+                                @endforeach
                             </select>
                             @error('documento_id')
                             <span class="error text-danger">{{ $message }}</span>
@@ -52,7 +55,8 @@
                         <div class="form-group col-md-6">
                             <label for="num_documento">Número documento</label>
                             <input type="text" name="num_documento" class="form-control" id="num_documento"
-                                value="{{$paciente->num_documento}}" placeholder="Número de pasaporte o cédula" maxlength="10">
+                                value="{{$paciente->num_documento}}" placeholder="Número de pasaporte o cédula"
+                                maxlength="10">
                             @error('num_documento')
                             <span class="error text-danger">{{ $message }}</span>
                             @enderror
