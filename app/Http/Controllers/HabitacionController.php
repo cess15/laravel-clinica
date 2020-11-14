@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Habitacion;
+use App\Http\Requests\FormRequestHabitacion;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
@@ -34,7 +35,7 @@ class HabitacionController extends Controller
             ->editColumn('estado_id', function ($habitacion) {
                 return $habitacion->estadoHabitacion->descripcion;
             })
-            ->addColumn('btn','habitaciones.actions')
+            ->addColumn('btn', 'habitaciones.actions')
             ->rawColumns(['btn'])
             ->make(true);
     }
@@ -55,7 +56,7 @@ class HabitacionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FormRequestHabitacion $request)
     {
         $habitacion = new Habitacion();
         $habitacion->piso_id = intval(request('piso_id'));
@@ -87,8 +88,8 @@ class HabitacionController extends Controller
      */
     public function edit($id)
     {
-        $habitacion=Habitacion::findOrFail($id);
-        return view('habitaciones.edit',compact('habitacion'));
+        $habitacion = Habitacion::findOrFail($id);
+        return view('habitaciones.edit', compact('habitacion'));
     }
 
     /**
@@ -98,7 +99,7 @@ class HabitacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(FormRequestHabitacion $request, $id)
     {
         $habitacion = Habitacion::findOrFail($id);
         $habitacion->piso_id = $request->get('piso_id');
@@ -119,7 +120,7 @@ class HabitacionController extends Controller
      */
     public function destroy($id)
     {
-        $habitacion=Habitacion::findOrFail($id);
+        $habitacion = Habitacion::findOrFail($id);
         $habitacion->delete();
         return redirect('/habitaciones');
     }

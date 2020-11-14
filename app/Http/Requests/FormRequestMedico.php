@@ -60,7 +60,6 @@ class FormRequestMedico extends FormRequest
             'num_celular.required' => 'El :attribute es obligatorio',
             'num_celular.min' => 'El :attribute debe tener 10 dígitos',
             'num_celular.numeric' => 'El :attribute debe contener sólo números',
-
         ];
     }
 }

@@ -27,6 +27,9 @@
                                 <option value="1" @if($habitacion->genero_id===1) selected @endif>Masculino</option>
                                 <option value="2" @if($habitacion->genero_id===2) selected @endif>Masculino</option>
                             </select>
+                            @error('genero_id')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="form-group col-md-6">
                             <label for="tipo_id">Tipo de Habitación</label>
@@ -35,6 +38,9 @@
                                 <option value="1" @if($habitacion->tipo_id===1) selected @endif>Simple</option>
                                 <option value="2" @if($habitacion->tipo_id===2) selected @endif>Doble</option>
                             </select>
+                            @error('tipo_id')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                     <div class="form group row">
@@ -50,6 +56,9 @@
                                 <option value="6" @if($habitacion->tipo_id===6) selected @endif>Quinto Piso</option>
                                 <option value="7" @if($habitacion->tipo_id===7) selected @endif>Último piso</option>
                             </select>
+                            @error('piso_id')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="form-group col-md-6">
                             <label for="estado_id">Estado de Habitación</label>
@@ -65,6 +74,9 @@
                             <label for="numero">Número de habitación</label>
                             <input type="text" name="numero" class="form-control" id="numero"
                                 placeholder="Escriba número de habitación" value="{{$habitacion->numero}}">
+                            @error('numero')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Registrar</button>
