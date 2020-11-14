@@ -17,7 +17,7 @@
                     </div><!-- /.row -->
                 </div>
                 <div class="card-body">
-                    {!! Form::open(['action'=>['HabitacionController@store'], 'method'=>'POST']) !!}
+                    {!! Form::open( ['action' => [ 'HabitacionController@store' ], 'method'=>'POST'] ) !!}
                     {!! Form::token() !!}
                     <div class="form-group row">
                         <div class="form-group col-md-6">
@@ -27,6 +27,9 @@
                                 <option value="1">Masculino</option>
                                 <option value="2">Femenino</option>
                             </select>
+                            @error('genero_id')
+                            <span class="error text-danger">{{ $message}}</span>
+                            @enderror
                         </div>
                         <div class="form-group col-md-6">
                             <label for="tipo_id">Tipo de Habitación</label>
@@ -35,6 +38,9 @@
                                 <option value="1">Simple</option>
                                 <option value="2">Doble</option>
                             </select>
+                            @error('tipo_id')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                     <div class="form group row">
@@ -50,6 +56,9 @@
                                 <option value="6">Quinto Piso</option>
                                 <option value="7">Último Piso</option>
                             </select>
+                            @error('piso_id')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="form-group col-md-6">
                             <label for="estado_id">Estado de Habitación</label>
@@ -58,6 +67,9 @@
                                 <option value="1">Disponible</option>
                                 <option value="2">Ocupada</option>
                             </select>
+                            @error('estado_id')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-group row">
@@ -65,10 +77,13 @@
                             <label for="numero">Número de habitación</label>
                             <input type="text" name="numero" class="form-control" id="numero"
                                 placeholder="Escriba número de habitación">
+                            @error('numero')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Registrar</button>
-                    <a class="btn btn-danger" href="{{route('home')}}">Regresar</a>
+                    <a class="btn btn-danger" href="{{url('habitaciones')}}">Regresar</a>
                     {!! Form::close() !!}
                 </div>
             </div>

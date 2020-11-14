@@ -19,7 +19,7 @@ class CreateHabitacionesTable extends Migration
             $table->unsignedInteger('estado_id');
             $table->unsignedInteger('tipo_id');
             $table->unsignedInteger('genero_id');
-            $table->string('numero');
+            $table->string('numero')->unique();
             $table->boolean('hay_paciente')->default(0);
             $table->timestamps();
 

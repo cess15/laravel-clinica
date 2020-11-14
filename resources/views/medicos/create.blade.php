@@ -77,7 +77,7 @@
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Registrar</button>
-                    <a class="btn btn-danger" href="{{route('home')}}">Regresar</a>
+                    <a class="btn btn-danger" href="{{url('medicos')}}">Regresar</a>
                     {!! Form::close() !!}
                 </div>
             </div>
