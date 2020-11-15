@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Habitacion extends Model
 {
     public $table = "habitaciones";
-    
+
     public function pisos()
     {
         return $this->belongsTo(Piso::class, 'piso_id');
@@ -23,5 +23,9 @@ class Habitacion extends Model
     public function genero()
     {
         return $this->belongsTo(Genero::class, 'genero_id');
+    }
+    public function internaciones()
+    {
+        return $this->belongsTo(Internacion::class, 'habitacion_id');
     }
 }
