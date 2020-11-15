@@ -25,6 +25,8 @@ Route::resource('pacientes', 'PacienteController')->middleware('auth');
 
 Route::resource('habitaciones', 'HabitacionController')->middleware('auth');
 
+Route::resource('internaciones','InternacionController')->middleware('auth');
+
 Route::get('user-data','UserController@showData')->name('data')->middleware('auth');
 
 Route::get('medic-data','MedicoController@showData')->name('dataMedic')->middleware('auth');
@@ -32,3 +34,11 @@ Route::get('medic-data','MedicoController@showData')->name('dataMedic')->middlew
 Route::get('patient-data','PacienteController@showData')->name('dataPatient')->middleware('auth');
 
 Route::get('room-data','HabitacionController@showData')->name('dataRoom')->middleware('auth');
+
+Route::get('internment-data','InternacionController@showDataInternments')->name('dataInternment')->middleware('auth');
+
+Route::get('room-enabled-data','InternacionController@showDataRooms')->name('dataRoomEnabled')->middleware('auth');
+
+Route::get('ajax-autocomplete-searchPatient','InternacionController@selectorSearchPatient');
+
+Route::get('ajax-autocomplete-searchMedic','InternacionController@selectorSearchMedic');

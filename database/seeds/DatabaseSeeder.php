@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(EstadoHabitacionTableSeeder::class);
         $this->call(TipoHabitacionTableSeeder::class);
         $this->call(GenerosTableSeeder::class);
+        $this->call(EstadoInternacionSeeder::class);
     }
 }

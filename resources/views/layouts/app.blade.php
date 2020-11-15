@@ -29,6 +29,8 @@
   <link rel="stylesheet" href="{{ asset('plugins/datatables-autofill/css/autoFill.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{ asset('plugins/datatables-select/css/select.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('plugins/datatables-select/css/select.bootstrap4.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css')}}">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -200,13 +202,13 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link active">
+                  <a href="{{ url('internaciones/create') }}" class="{{ Request::path()==='internaciones/create' ? 'nav-link active' : 'nav-link' }}" class="nav-link active">
                     <i class="fas fa-plus nav-icon"></i>
                     <p>Internar Paciente</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link active">
+                  <a href="{{ url('internaciones') }}" class="{{ Request::path()==='internaciones' ? 'nav-link active' : 'nav-link' }}" class="nav-link active">
                     <i class="fas fa-id-card-alt nav-icon"></i>
                     <p>Todos los registros</p>
                   </a>
@@ -228,7 +230,7 @@
                 <li class="nav-item">
                   <a href="#" class="nav-link active">
                     <i class="fas fa-plus nav-icon"></i>
-                    <p>Internar Paciente</p>
+                    <p>Dar de alta al Paciente</p>
                   </a>
                 </li>
                 <li class="nav-item">
@@ -291,6 +293,8 @@
   <script src="{{ asset('plugins/datatables-select/js/dataTables.select.min.js')}}"></script>
   <script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
   <script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+  <script src="{{ asset('plugins/datatables-select/js/select.bootstrap4.min.js')}}"></script>
+  <script src="{{ asset('plugins/select2/js/select2.min.js')}}"></script>
 
   <script src="{{ asset('dist/js/adminlte.js') }}"></script>
   @stack('scripts')
