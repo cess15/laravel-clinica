@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\EstadoHabitacion;
-use App\EstadoInternacion;
 use App\Habitacion;
+use App\Http\Requests\FormRequestInternacion;
 use App\Internacion;
 use App\Medico;
 use App\Paciente;
@@ -110,7 +109,7 @@ class InternacionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FormRequestInternacion $request)
     {
         $internacion = new Internacion();
         $internacion->paciente_id=intval(request('paciente_id'));
@@ -134,51 +133,6 @@ class InternacionController extends Controller
         $habitacion->update();
         
 
-        return dd($internacion);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Internacion  $internacion
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Internacion $internacion)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Internacion  $internacion
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Internacion $internacion)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Internacion  $internacion
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Internacion $internacion)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Internacion  $internacion
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Internacion $internacion)
-    {
-        //
+        return redirect('/internaciones');
     }
 }

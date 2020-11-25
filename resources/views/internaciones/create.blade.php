@@ -23,7 +23,13 @@
                         <div class="form-group col-md-6">
                             <h5 class="h5">Paciente</h5>
                             <label for="paciente_id"><i class="fa fa-search"></i></label>
-                            <select id="paciente_id" class="searchPatient form-control col-md-10" name="paciente_id"></select>
+                            <select id="paciente_id" class="searchPatient form-control col-md-10"
+                                name="paciente_id"><select>
+                                    <div>
+                                        @error('paciente_id')
+                                        <span class="error text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -31,6 +37,11 @@
                             <h5 class="h5">Médico</h5>
                             <label for="medico_id"><i class="fa fa-search"></i></label>
                             <select id="medico_id" class="searchMedic form-control col-md-10" name="medico_id"></select>
+                            <div>
+                                @error('medico_id')
+                                <span class="error text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -38,6 +49,9 @@
                             <h5 class="h5">Motivo</h5>
                             <input type="text" name="motivo" class="form-control" id="motivo"
                                 placeholder="Escriba el motivo de la internación">
+                            @error('motivo')
+                            <span class="error text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                     <div class="row">
@@ -46,6 +60,11 @@
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                     <input type="text" name="habitacion_id" id="habitacion_id" hidden>
+                    <div>
+                        @error('habitacion_id')
+                        <span class="error text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
                     <div class="table-responsive">
                         <table id="tableRoomInternation" class="display nowrap table table-bordered table-hover"
                             style="width:100%;">
