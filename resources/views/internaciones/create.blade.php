@@ -102,7 +102,7 @@
             },
         },
         ajax: {
-            url: '/ajax-autocomplete-searchPatient',
+            url: '/ajax-autocomplete-searchPatientInternment',
             dataType: 'json',
             delay: 250,
             processResults: function (data) {

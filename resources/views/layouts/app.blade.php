@@ -241,6 +241,18 @@
                 </li>
               </ul>
             </li>
+
+            <!-- Historial -->
+            <li class="nav-item">
+              <a href="{{url('historial')}}"
+                class="{{ Request::path() === 'historial' ? 'nav-link active' : 'nav-link' }}">
+                <i class="nav-icon fas fa-users"></i>
+                <p>
+                  Historial
+                </p>
+              </a>
+            </li>
+
           </ul>
         </nav>
 
