@@ -39,6 +39,13 @@ Route::get('internment-data','InternacionController@showDataInternments')->name(
 
 Route::get('room-enabled-data','InternacionController@showDataRooms')->name('dataRoomEnabled')->middleware('auth');
 
-Route::get('ajax-autocomplete-searchPatient','InternacionController@selectorSearchPatient');
+Route::get('ajax-autocomplete-searchPatientInternment','InternacionController@selectorSearchPatient');
 
 Route::get('ajax-autocomplete-searchMedic','InternacionController@selectorSearchMedic');
+
+Route::get('historial','HistorialController@index');
+
+Route::get('historial/registros','HistorialController@show');
+
+Route::get('ajax-autocomplete-searchPatient','HistorialController@selectorSearchPatient');
+
